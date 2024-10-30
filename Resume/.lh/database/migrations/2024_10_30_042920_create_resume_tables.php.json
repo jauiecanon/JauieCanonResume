@@ -1,0 +1,22 @@
+{
+    "sourceFile": "database/migrations/2024_10_30_042920_create_resume_tables.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1730262610644,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1730262624415,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n use Illuminate\\Database\\Migrations\\Migration;\n use Illuminate\\Database\\Schema\\Blueprint;\n use Illuminate\\Support\\Facades\\Schema;\n \n-return new class extends Migration\n+class CreateResumeTables extends Migration\n {\n     public function up()\n     {\n         Schema::create('resumes', function (Blueprint $table) {\n"
+                }
+            ],
+            "date": 1730262610644,
+            "name": "Commit-0",
+            "content": "<?php\n\nuse Illuminate\\Database\\Migrations\\Migration;\nuse Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Support\\Facades\\Schema;\n\nreturn new class extends Migration\n{\n    public function up()\n    {\n        Schema::create('resumes', function (Blueprint $table) {\n            $table->id();\n            $table->string('name');\n            $table->string('address');\n            $table->string('phone');\n            $table->string('email');\n            $table->timestamps();\n        });\n\n        Schema::create('experiences', function (Blueprint $table) {\n            $table->id();\n            $table->foreignId('resume_id')->constrained()->onDelete('cascade');\n            $table->string('title');\n            $table->string('company');\n            $table->string('location');\n            $table->date('start_date');\n            $table->date('end_date')->nullable();\n            $table->text('description');\n            $table->timestamps();\n        });\n\n        Schema::create('education', function (Blueprint $table) {\n            $table->id();\n            $table->foreignId('resume_id')->constrained()->onDelete('cascade');\n            $table->string('degree');\n            $table->string('institution');\n            $table->date('start_date');\n            $table->date('end_date');\n            $table->timestamps();\n        });\n\n        Schema::create('skills', function (Blueprint $table) {\n            $table->id();\n            $table->foreignId('resume_id')->constrained()->onDelete('cascade');\n            $table->string('skill_name');\n            $table->timestamps();\n        });\n\n        Schema::create('certifications', function (Blueprint $table) {\n            $table->id();\n            $table->foreignId('resume_id')->constrained()->onDelete('cascade');\n            $table->string('title');\n            $table->string('organization');\n            $table->date('date_obtained');\n            $table->timestamps();\n        });\n    }\n\n    public function down()\n    {\n        Schema::dropIfExists('certifications');\n        Schema::dropIfExists('skills');\n        Schema::dropIfExists('education');\n        Schema::dropIfExists('experiences');\n        Schema::dropIfExists('resumes');\n    }\n}"
+        }
+    ]
+}

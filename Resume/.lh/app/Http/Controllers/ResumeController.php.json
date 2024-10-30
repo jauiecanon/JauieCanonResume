@@ -1,0 +1,22 @@
+{
+    "sourceFile": "app/Http/Controllers/ResumeController.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1730265070269,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1730265094137,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,15 @@\n+<?php\n+\n+namespace App\\Http\\Controllers;\n+\n+use App\\Models\\Resume;\n+use Illuminate\\Http\\Request;\n+\n+class ResumeController extends Controller\n+{\n+    public function index()\n+    {\n+        $resume = Resume::with(['experiences', 'education', 'skills', 'certifications'])->first();\n+        return view('resume', compact('resume'));\n+    }\n+}\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1730265070269,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Http\\Controllers;\n\nuse App\\Models\\Resume;\nuse Illuminate\\Http\\Request;\n\nclass ResumeController extends Controller\n{\n    public function index()\n    {\n        $resume = Resume::with(['experiences', 'education', 'skills', 'certifications'])->first();\n        return view('resume', compact('resume'));\n    }\n}"
+        }
+    ]
+}
